@@ -14,8 +14,9 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-            $table->foreignId('table_id')->references('id')->on('tables');
+            $table->foreignId('table_id')->references('id')->on('tables')->constrained()->onDelete('cascade');
             $table->string('status',255)->default('placed');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

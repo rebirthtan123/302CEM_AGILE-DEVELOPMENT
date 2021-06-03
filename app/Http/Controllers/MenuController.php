@@ -84,6 +84,9 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->orders()->delete();
+        $menu->delete();
+
+        return redirect('staff/mainmenu');
     }
 }
