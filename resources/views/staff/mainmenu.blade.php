@@ -12,9 +12,9 @@
               
                   <table id="tblOrderList" class="table table-bordered text-center" width="50%" cellspacing="0">
                       <tr>
-                          <th><button type="button" class="btn btn-secondary"><a href="{{ asset('staff/table') }}" style="text-decoration: none">Add Order</button></th>
-                          <th><button type="button" class="btn btn-secondary"><a href="{{ asset('staff/kitchen') }}" style="text-decoration: none">Kitchen</button></th>
-                          <th><button type="button" class="btn btn-secondary"><a href="{{ route('auth.login') }}" style="text-decoration: none">Logout</button></th>
+                          <th> <button type="button" class="btn-default"><a href="{{ asset('staff/table') }}" style="text-decoration: none">Add Order</button></th>
+                          <th><button type="button" class="btn-info" style="text-color:#fff;"><a href="#" style="text-decoration: none">Kitchen</button></th>
+                          <th><button type="button" class="btn-warning"><a href="{{ route('auth.login') }}" style="text-decoration: none">Logout</button></th>
      
                       </tr>
                   </table>
@@ -69,13 +69,16 @@
                           <td>
                            
                               
-                                <button>Cash</button>
+                                <button onclick="myFunction()">Cash</button>
                                 <br><br>
                                 <button>Card</button>
                              
                           </td>
                           <td>
-                            Cancel
+                            <form action="{{ route('staff.delete',['id'=>$order->table_id]) }}" method="post">
+                              @csrf
+                              <input type="submit" value="Cancel">
+                            </form>
                           </td>
 
                       </tr>
@@ -88,6 +91,11 @@
       </div>
 
     
-
+<script>
+  function myFunction() {
+    
+        
+}
+</script>
 
 @endsection
