@@ -14,8 +14,9 @@ class CreateMenuOrderTable extends Migration
     public function up()
     {
         Schema::create('menu_order', function (Blueprint $table) {
-            $table->foreignId('order_id')->references('id')->on('orders');
-            $table->foreignId('menu_id')->references('id')->on('menus');
+            $table->engine = 'InnoDB';
+            $table->foreignId('order_id')->references('id')->on('orders')->constrained()->onDelete('cascade');
+            $table->foreignId('menu_id')->references('id')->on('menus')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamp('created_time')->useCurrent();
         });
