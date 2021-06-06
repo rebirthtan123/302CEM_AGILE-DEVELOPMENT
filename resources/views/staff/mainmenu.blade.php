@@ -13,7 +13,7 @@
                   <table id="tblOrderList" class="table table-bordered text-center" width="50%" cellspacing="0">
                       <tr>
                           <th> <button type="button" class="btn-default"><a href="{{ asset('staff/table') }}" style="text-decoration: none">Add Order</button></th>
-                          <th><button type="button" class="btn-info" style="text-color:#fff;"><a href="#" style="text-decoration: none">Kitchen</button></th>
+                          <th><button type="button" class="btn-info" style="text-color:#fff;"><a href="{{ asset('staff/kitchen') }}" style="text-decoration: none">Kitchen</button></th>
                           <th><button type="button" class="btn-warning"><a href="{{ route('auth.login') }}" style="text-decoration: none">Logout</button></th>
      
                       </tr>
