@@ -93,11 +93,8 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public static function destroy(Order $order)
-    {     
-        
-        $order->menus()->delete();
-
-        return redirect('staff/mainmenu');
+    public function destroy(Order $order)
+    {
+        //
     }
 }

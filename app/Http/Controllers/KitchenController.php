@@ -8,7 +8,7 @@ use App\Models\Order;
 
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class KitchenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class MenuController extends Controller
     public function index()
     {
        $orders = Order::with('menus')->get();
-       return view('staff.mainmenu',compact('orders'));
+       return view('staff.kitchen',compact('orders'));
     }
 
     /**
