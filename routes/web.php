@@ -34,4 +34,4 @@ Route::get("staff/table",[TableController::class,'index']);
 Route::get("staff/kitchen",[KitchenController::class,'index']);
 Route::get("staff/addOrder/{id}",[OrderController::class,'index'])->name('staff.addOrder');
 Route::post("staff/addOrder/store/{id}",[OrderController::class,'store'])->name('staff.addOrder.store');
-Route::post("staff/mainmenu/delete/{id}",[OrderController::class,'destroy'])->name('staff.delete');
+Route::post("staff/mainmenu/delete/{id}",[OrderController::class,'delete'])->name('staff.delete');
