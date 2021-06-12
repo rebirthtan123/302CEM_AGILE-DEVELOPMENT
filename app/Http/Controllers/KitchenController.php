@@ -21,6 +21,10 @@ class KitchenController extends Controller
        return view('staff.kitchen',compact('orders'));
     }
 
+    public function showOut($id){
+        return Order::find($id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,9 +75,12 @@ class KitchenController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request)
     {
-        //
+        $order = Order::find($request->id);
+        $order->status = $request->status;
+        $order->save();
+        return redirect('staff/kitchen');
     }
 
     /**
