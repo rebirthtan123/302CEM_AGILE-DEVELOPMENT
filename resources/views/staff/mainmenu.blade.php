@@ -75,7 +75,7 @@
                              
                           </td>
                           <td>
-                            <form action="{{ route('staff.delete',['id'=>$order->table_id]) }}" method="post">
+                            <form action="{{ route('staff.delete',['id'=>$order->id]) }}" method="post">
                               @csrf
                               <input type="submit" value="Cancel">
                             </form>

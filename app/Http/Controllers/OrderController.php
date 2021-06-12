@@ -95,9 +95,14 @@ class OrderController extends Controller
      */
     public static function destroy(Order $order)
     {     
-        
-        $order->menus()->delete();
+        //
+    }
 
+    public function delete($id)
+    {
+        $order = Order::find($id);
+        $order->delete();
         return redirect('staff/mainmenu');
     }
+
 }

@@ -38,3 +38,4 @@ Route::post("staff/addOrder/store/{id}",[OrderController::class,'store'])->name(
 Route::get("staff/kitchen",[KitchenController::class,'index']);
 Route::get("staff/edit/{id}",[KitchenController::class,'showOut']);
 Route::post("staff/update/{id}",[KitchenController::class,'update'])->name('staff.update');
+Route::post("staff/mainmenu/delete/{id}",[OrderController::class,'delete'])->name('staff.delete');
