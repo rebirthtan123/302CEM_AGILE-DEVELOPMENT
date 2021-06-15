@@ -34,7 +34,7 @@
                       <td>
                           <ul>
                           @foreach($order->menus as $item)
-                              <li>{{ $item->itemName }} ({{ $item->pivot->quantity }})</li>
+                              <li><strong>{{ $item->itemName }} ({{ $item->pivot->quantity }})</strong></li>
                           @endforeach
                           </ul>
                       </td>
