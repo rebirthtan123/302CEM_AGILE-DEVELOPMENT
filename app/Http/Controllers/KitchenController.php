@@ -8,18 +8,21 @@ use App\Models\Order;
 
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class KitchenController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $menus = Menu::all();
-        $table = Table::find($id);
-        return view('staff.addOrder',compact(['menus','table']));
+       $orders = Order::with('menus')->get();
+       return view('staff.kitchen',compact('orders'));
+    }
+
+    public function showOut($id){
+        return Order::find($id);
     }
 
     /**
@@ -40,35 +43,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
-        $table = Table::find($request->id);
-        $table->statusTable = $request->statusTable;
-        $table->save();
-
-
-        $order = Order::create($request->all());
-        
-        $menus = $request->input('menus',[]);
-        $quantities = $request->input('quantities',[]);
-        for ($menu=0; $menu < count($menus); $menu++){
-            if($menus[$menu] != '' ){
-                $order->menus()->attach($menus[$menu],['quantity'=> $quantities[$menu]]);
-            }
-        }
-
-       
-        
-
-        return redirect('staff/mainmenu');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Menu $menu)
     {
         //
     }
@@ -76,10 +60,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Menu $menu)
     {
         //
     }
@@ -88,7 +72,7 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -96,29 +80,17 @@ class OrderController extends Controller
         $order = Order::find($request->id);
         $order->status = $request->status;
         $order->save();
-        return redirect('staff/mainmenu');
+        return redirect('staff/kitchen');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public static function destroy(Order $order)
-    {     
+    public function destroy(Menu $menu)
+    {
         //
     }
-
-    public function delete($id,$tableId)
-    {
-        $table = Table::find($tableId);
-        $table->statusTable = 'Available';
-        $table->save();
-
-        $order = Order::find($id);
-        $order->delete();
-        return redirect('staff/mainmenu');
-    }
-
 }

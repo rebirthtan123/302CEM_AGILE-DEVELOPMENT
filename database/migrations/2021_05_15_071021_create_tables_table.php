@@ -17,7 +17,7 @@ class CreateTablesTable extends Migration
             $table->id();
             $table->string('name',255);
             $table->string('src');
-            $table->string('status',255);
+            $table->string('statusTable',255);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
 

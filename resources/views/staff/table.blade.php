@@ -25,9 +25,11 @@
         <td>{{ $table->id }}</td>
         <td>{{ $table->name }}</td>
         <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($table->src)) }}" height="100" width="100" alt="table"></td>
-        <td>{{ $table->status }}</td>
-        <td>            
-            <a class="btn btn-info" href="{{ route('staff.addOrder',['id'=>$table->id]) }}">Select</a>
+        <td>{{ $table->statusTable }}</td>
+        <td>
+          @if ($table['statusTable']=='Available')
+          <a class="btn btn-info" href="{{ route('staff.addOrder',['id'=>$table->id]) }}">Select</a>
+          @endif
         </td>
     </tr>
     @endforeach

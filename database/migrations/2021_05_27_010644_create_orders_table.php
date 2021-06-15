@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('table_id')->references('id')->on('tables')->constrained()->onDelete('cascade');
             $table->string('status',255)->default('placed');
+            $table->string('paymentStatus',255)->default('Not Paid');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 
