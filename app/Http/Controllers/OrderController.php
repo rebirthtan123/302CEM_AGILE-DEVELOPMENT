@@ -40,8 +40,14 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = Order::create($request->all());
 
+        $table = Table::find($request->id);
+        $table->statusTable = $request->statusTable;
+        $table->save();
+
+
+        $order = Order::create($request->all());
+        
         $menus = $request->input('menus',[]);
         $quantities = $request->input('quantities',[]);
         for ($menu=0; $menu < count($menus); $menu++){
@@ -49,6 +55,9 @@ class OrderController extends Controller
                 $order->menus()->attach($menus[$menu],['quantity'=> $quantities[$menu]]);
             }
         }
+
+       
+        
 
         return redirect('staff/mainmenu');
     }
@@ -82,9 +91,12 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
-        //
+        $order = Order::find($request->id);
+        $order->status = $request->status;
+        $order->save();
+        return redirect('staff/mainmenu');
     }
 
     /**
@@ -98,8 +110,12 @@ class OrderController extends Controller
         //
     }
 
-    public function delete($id)
+    public function delete($id,$tableId)
     {
+        $table = Table::find($tableId);
+        $table->statusTable = 'Available';
+        $table->save();
+
         $order = Order::find($id);
         $order->delete();
         return redirect('staff/mainmenu');
