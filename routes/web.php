@@ -6,6 +6,7 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\KitchenController;
+use App\Http\Controllers\ReceiptController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -39,3 +40,8 @@ Route::get("staff/kitchen",[KitchenController::class,'index']);
 Route::get("staff/edit/{id}",[KitchenController::class,'showOut']);
 Route::post("staff/update/{id}",[KitchenController::class,'update'])->name('staff.update');
 Route::post("staff/mainmenu/delete/{id}",[OrderController::class,'delete'])->name('staff.delete');
+
+
+Route::post("staff/mainmenu/receipt/{id}",[ReceiptController::class,'index'])->name('staff.receipt');
+
+Route::post("staff/receipt/delete/{id}",[ReceiptController::class,'deletereceipt'])->name('staff.deletereceipt');

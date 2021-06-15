@@ -15,6 +15,7 @@
                           <th> <button type="button" class="btn-default"><a href="{{ asset('staff/table') }}" style="text-decoration: none">Add Order</button></th>
                           <th><button type="button" class="btn-info" style="text-color:#fff;"><a href="{{ asset('staff/kitchen') }}" style="text-decoration: none">Kitchen</button></th>
                           <th><button type="button" class="btn-warning"><a href="{{ route('auth.login') }}" style="text-decoration: none">Logout</button></th>
+                          
      
                       </tr>
                   </table>
@@ -67,13 +68,15 @@
                           </td>
                           
                           <td>
-                           
-                              
-                                <button onclick="myFunction()">Cash</button>
-                                <br><br>
-                                <button>Card</button>
-                             
+                          
+                          <form action="{{ route('staff.receipt',['id'=>$order->id]) }}" method="post">
+                          @csrf
+                          <input type="hidden" name="id" value="{{ $order['id'] }}">
+                          <input type="submit" value="Print Receipt">
+                          </form>
+                          
                           </td>
+
                           <td>
                             <form action="{{ route('staff.delete',['id'=>$order->id]) }}" method="post">
                               @csrf
@@ -84,6 +87,7 @@
                       </tr>
                       @endforeach
                   </table>
+                  
                   
               
           </div>
