@@ -16,18 +16,33 @@ class ReceiptController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($id,$tableId)
     {
         $order = Order::with('menus')->find($id);
-        //dd($order);
-        return view('staff.receipt',compact('order'));
+        $table = Table::find($tableId);
+        //dd($table);
 
-        
+        return view('staff.receipt',compact(['order','table']));
 
+    
     }
 
     public function showOut($id){
         return Order::find($id);
+    }
+
+    public function makePayment(Request $request,$id,$tableId){
+        
+        $order = Order::find($request->id);
+        $order->paymentStatus = $request->status;
+        $order->save();
+        
+        $table = Table::find($tableId);
+        $table->statusTable = 'Available';
+        $table->save();
+            
+
+        return redirect('staff/mainmenu');
     }
 
     /**

@@ -86,7 +86,7 @@
                   <tr>
                     <div class="form-group {{ $errors->has('table_id') ? 'has-error' : '' }}">
                       <label for="table_id">Table Id</label>
-                      <input type="text" id="table_id" name="table_id" class="form-control" value="{{ $table->id }}{{ old('table_id', isset($order) ? $order->table_id : '') }}" required>
+                      <input type="text" id="table_id" name="table_id" class="form-control" value="{{ $table->id }}{{ old('table_id', isset($order) ? $order->table_id : '') }}" readonly>
                       @if($errors->has('table_id'))
                           <em class="invalid-feedback">
                               {{ $errors->first('table_id') }}
@@ -127,7 +127,10 @@
             </div>
         </div>
     </div>
+           
     <div>
+      <input type="hidden" name="table_id" value="{{ $table['id'] }}">
+      <input type="hidden" name="statusTable" value="Occupied" readonly>
         <input class="btn btn-primary" type="submit" value="save">
     </div>
 </form>

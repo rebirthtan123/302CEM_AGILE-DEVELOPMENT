@@ -15,7 +15,7 @@ class Table extends Model
     protected $fillable = [
         'name',
         'src',
-        'status',
+        'statusTable',
         'created_at'
     ];
 }

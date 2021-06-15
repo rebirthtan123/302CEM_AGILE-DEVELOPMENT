@@ -39,9 +39,11 @@ Route::post("staff/addOrder/store/{id}",[OrderController::class,'store'])->name(
 Route::get("staff/kitchen",[KitchenController::class,'index']);
 Route::get("staff/edit/{id}",[KitchenController::class,'showOut']);
 Route::post("staff/update/{id}",[KitchenController::class,'update'])->name('staff.update');
-Route::post("staff/mainmenu/delete/{id}",[OrderController::class,'delete'])->name('staff.delete');
+Route::post("staff/mainmenu/delete/{id}/{table_id}",[OrderController::class,'delete'])->name('staff.delete');
 
+Route::post("staff/order/{id}",[OrderController::class,'update'])->name('order.update');
+Route::post("staff/payment/{id}/{table_id}",[ReceiptController::class,'makePayment'])->name('order.makePayment');
 
-Route::post("staff/mainmenu/receipt/{id}",[ReceiptController::class,'index'])->name('staff.receipt');
+Route::post("staff/mainmenu/receipt/{id}/{table_id}",[ReceiptController::class,'index'])->name('staff.receipt');
 
 Route::post("staff/receipt/delete/{id}",[ReceiptController::class,'deletereceipt'])->name('staff.deletereceipt');

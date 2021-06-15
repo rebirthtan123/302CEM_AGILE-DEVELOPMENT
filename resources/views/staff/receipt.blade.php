@@ -60,7 +60,7 @@
                       <td>
                         <ul>
                           @foreach($order->menus as $item)
-                               X {{ $item->pivot->quantity }} 
+                                {{ $item->pivot->quantity }} 
                           @endforeach
                           </ul>
                       </td>
@@ -76,14 +76,14 @@
                       <td>
                           <ul>
                           @foreach($order->menus as $item)
-                               ${{ $item->price }} 
+                               {{ $item->price }} <br>
                           @endforeach
                           </ul>
                       </td>
                       <td>
                           <ul>
                           @foreach($order->menus as $item)
-                               ${{ $item->pivot->quantity * $item->price }} 
+                            {{number_format(round(($item->pivot->quantity * $item->price )), 2)}}
                           @endforeach
                           </ul>
                       </td>
@@ -99,7 +99,7 @@
 
                     </td>
                     <td>
-                        <div style='font-weight: bold;'>Total Amount</div>
+                        <div style='font-weight: bold;'>Total Amount (RM)</div>
                     </td>
                     <td>
                         <ul>
@@ -115,8 +115,8 @@
                           </div>
                           </form>
 
-                                ${{$total}}                          
-
+                              {{number_format(round(($total)), 2)}}
+                              
                         </ul>
                     </td> 
                   </tr>  
@@ -131,12 +131,20 @@
 
                     </td>
                     <td>
-
+                        <form>
+                            <input type="button" value="Print Receipt"  onclick=window.print()>
+                            </form>
                     </td>
                     <td>
-                        <form action="{{ route('staff.delete',['id'=>$order->id]) }}" method="post">
+                        <form action="{{ route('order.makePayment',['id'=>$order->id,'table_id'=>$table->id]) }}" method="post">
                             @csrf
-                            <br><input type="submit" value="Print"><br><br><br>
+                            <input type="hidden" name="id" value="{{ $order['id'] }}">
+                            <input type="hidden" name="status" value="Paid" readonly>
+
+                            <input type="hidden" name="table_id" value="{{ $table['id']}}">
+                            <input type="hidden" name="statusTable" value="Available" readonly>
+
+                            <button type="submit" >Pay</button><br><br><br>
                         </form>
                     </td>
                   </tr>
@@ -152,3 +160,4 @@
 </div>
 
 @endsection
+
