@@ -129,7 +129,7 @@
         <ul>
             <li><a href="{{ asset('admin/index') }}"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-user"></i>User Management</a></li>
-            <li><a href="#"><i class="fas fa-address-card"></i>Menu Management</a></li>
+            <li><a href="{{ route('admin.menu') }}"><i class="fas fa-address-card"></i>Menu Management</a></li>
             <li><a href="{{ route('admin.viewOrder') }}"><i class="fas fa-project-diagram"></i>View Order</a></li>
             <li><a href="{{ route('auth.login') }}"><i class="fas fa-blog"></i>Logout</a></li>
         </ul> 

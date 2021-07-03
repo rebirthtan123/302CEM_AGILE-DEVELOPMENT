@@ -5,7 +5,6 @@
 
 <br><br>
  
-   I DON UNDERSTAND 
-
+Main page
 
 @endsection

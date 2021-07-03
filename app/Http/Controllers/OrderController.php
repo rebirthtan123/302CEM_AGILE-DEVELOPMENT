@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function viewOrder()
     {
         $orders = Order::orderBy('id', 'ASC')->paginate(8)->appends(request()->query());
-        ;
+        
         return view('admin.viewOrder', compact('orders'));
     }
 

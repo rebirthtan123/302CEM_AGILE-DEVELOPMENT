@@ -20,14 +20,22 @@ class AdminController extends Controller
        return view('admin.index');
     }
 
+
+    public function menu()
+    {
+        $menus = Menu::all();
+       return view('admin.menu',compact('menus'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createMenu()
     {
-        //
+        return view('admin.createMenu');
     }
 
     /**
@@ -36,10 +44,21 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeMenu(Request $request)
     {
-        //
+        $request->validate([
+            'itemName' => 'required',
+            'categoryName' => 'required',
+            'price' => 'required',
+        ]);
+  
+        Menu::create($request->all());
+   
+        return redirect()->route('admin.menu')
+                        ->with('success','Menu created successfully.');
+    
     }
+    
 
     /**
      * Display the specified resource.
@@ -62,6 +81,13 @@ class AdminController extends Controller
     {
         //
     }
+    
+    public function editMenu($id)
+    {
+        $menu = Menu::find($id);
+
+        return view('admin.editMenu',compact('menu'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -75,6 +101,24 @@ class AdminController extends Controller
         //
     }
 
+    public function updateMenu(Request $request)
+    {
+        $request->validate([
+            'itemName' => 'required',
+            'categoryName' => 'required',
+            'price' => 'required',
+        ]);
+  
+        $data= Menu::find($request->id);
+        $data->itemName=$request->itemName;
+        $data->categoryName=$request->categoryName;
+        $data->price=$request->price;
+        $data->save();
+   
+        return redirect()->route('admin.menu')
+                        ->with('success','Menu updated successfully.');
+    
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -84,5 +128,13 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+
+    public function deleteMenu($id)
+    {
+        $menu = Menu::find($id);
+        $menu->delete();
+        return redirect()->route('admin.menu');
     }
 }

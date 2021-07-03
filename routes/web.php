@@ -31,6 +31,7 @@ Route::get('/', function () {
 Route::get('/auth/login',[StaffController::class,'login'])->name('auth.login');
 Route::post('auth/check', [StaffController::class,'check'])->name('auth.check');
 
+//staff section
 Route::get('staff/mainmenu',[StaffController::class,'mainmenu'])->name('staff.mainmenu');
 Route::get('staff/mainmenu',[MenuController::class,'index']);
 Route::get("staff/table",[TableController::class,'index']);
@@ -50,5 +51,15 @@ Route::post("staff/mainmenu/receipt/{id}/{table_id}",[ReceiptController::class,'
 
 Route::post("staff/receipt/delete/{id}",[ReceiptController::class,'deletereceipt'])->name('staff.deletereceipt');
 
+//admin section
 Route::get("admin/index",[AdminController::class,'index'])->name('admin.index');
+Route::get("admin/menu",[AdminController::class,'menu'])->name('admin.menu');
+Route::get("admin/menu/create",[AdminController::class,'createMenu'])->name('admin.createMenu');
+Route::post("admin/menu/store",[AdminController::class,'storeMenu'])->name('admin.storeMenu');
+Route::get("admin/menu/edit/{id}",[AdminController::class,'editMenu'])->name('admin.editMenu');
+Route::post("admin/menu/update/{id}",[AdminController::class,'updateMenu'])->name('admin.updateMenu');
+Route::post("admin/menu/delete/{id}",[AdminController::class,'deleteMenu'])->name('admin.deleteMenu');
+
+
+
 Route::get("admin/viewOrder",[OrderController::class,'viewOrder'])->name('admin.viewOrder');
