@@ -310,7 +310,7 @@
     <div id="formContent">
       <!-- Tabs Titles -->
       <h2 class="active"> Sign In </h2>
-  
+      <a href="{{ asset('admin/index') }}">Login as Admin </a>
       <!-- Icon -->
       <div class="fadeIn first">
         Welcome

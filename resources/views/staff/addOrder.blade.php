@@ -127,7 +127,7 @@
             </div>
         </div>
     </div>
-           
+           <br>
     <div>
       <input type="hidden" name="table_id" value="{{ $table['id'] }}">
       <input type="hidden" name="statusTable" value="Occupied" readonly>

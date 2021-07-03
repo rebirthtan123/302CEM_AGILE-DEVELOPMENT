@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+ 
+    
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Http\\Controllers"
   ],
+  "SelectedNode": "\\app\\Http\\Controllers\\KitchenController.php",
   "PreviewInSolutionExplorer": false
 }
