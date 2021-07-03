@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Menu;
+use App\Models\Staff;
 use App\Models\Table;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -27,6 +28,12 @@ class AdminController extends Controller
        return view('admin.menu',compact('menus'));
     }
 
+    public function user()
+    {
+        $users = Staff::all();
+       return view('admin.user',compact('users'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,6 +43,11 @@ class AdminController extends Controller
     public function createMenu()
     {
         return view('admin.createMenu');
+    }
+
+    public function createUser()
+    {
+        return view('admin.createUser');
     }
 
     /**
@@ -58,7 +70,20 @@ class AdminController extends Controller
                         ->with('success','Menu created successfully.');
     
     }
+
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'role' => 'required',
+        ]);
+  
+        Staff::create($request->all());
+   
+        return redirect()->route('admin.user')
+                        ->with('success','User created successfully.');
     
+    }
 
     /**
      * Display the specified resource.
@@ -87,6 +112,13 @@ class AdminController extends Controller
         $menu = Menu::find($id);
 
         return view('admin.editMenu',compact('menu'));
+    }
+
+    public function editUser($id)
+    {
+        $user = Staff::find($id);
+
+        return view('admin.editUser',compact('user'));
     }
 
     /**
@@ -119,6 +151,23 @@ class AdminController extends Controller
                         ->with('success','Menu updated successfully.');
     
     }
+
+    public function updateUser(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'role' => 'required',
+        ]);
+  
+        $data= Staff::find($request->id);
+        $data->username=$request->username;
+        $data->role=$request->role;
+        $data->save();
+   
+        return redirect()->route('admin.user')
+                        ->with('success','User updated successfully.');
+    
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -136,5 +185,12 @@ class AdminController extends Controller
         $menu = Menu::find($id);
         $menu->delete();
         return redirect()->route('admin.menu');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = Staff::find($id);
+        $user->delete();
+        return redirect()->route('admin.user');
     }
 }
