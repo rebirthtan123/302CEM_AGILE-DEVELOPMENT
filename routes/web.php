@@ -7,6 +7,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\AdminController;
+
 
 use Illuminate\Support\Facades\DB;
 
@@ -47,3 +49,6 @@ Route::post("staff/payment/{id}/{table_id}",[ReceiptController::class,'makePayme
 Route::post("staff/mainmenu/receipt/{id}/{table_id}",[ReceiptController::class,'index'])->name('staff.receipt');
 
 Route::post("staff/receipt/delete/{id}",[ReceiptController::class,'deletereceipt'])->name('staff.deletereceipt');
+
+Route::get("admin/index",[AdminController::class,'index'])->name('admin.index');
+Route::get("admin/viewOrder",[OrderController::class,'viewOrder'])->name('admin.viewOrder');

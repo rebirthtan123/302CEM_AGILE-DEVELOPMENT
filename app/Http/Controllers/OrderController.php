@@ -22,6 +22,13 @@ class OrderController extends Controller
         return view('staff.addOrder',compact(['menus','table']));
     }
 
+    public function viewOrder()
+    {
+        $orders = Order::orderBy('id', 'ASC')->paginate(8)->appends(request()->query());
+        ;
+        return view('admin.viewOrder', compact('orders'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
