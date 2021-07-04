@@ -4,14 +4,24 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+ <testsuites>
+    <testsuite name="Load Main Menu Page">
+        <directory>testing</directory>
         </testsuite>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+  
+    <testsuite name="Load Table Seat Page">
+        <directory>testing</directory>
         </testsuite>
+
+    <testsuite name="Test Staff Login ">
+        <directory>testing</directory>
+        </testsuite>
+    <testsuite name="Load Kitchen Page ">
+        <directory>testing</directory>
+        </testsuite>
+
     </testsuites>
+
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
