@@ -38,6 +38,59 @@ class StaffController extends Controller
         return view('staff.mainmenu');
     }
 
+    function loginChef(){
+        return view('auth.loginChef');
+    }
+
+    function loginAdmin(){
+        return view('auth.loginAdmin');
+    }
+
+    function checkChef(Request $request){
+        //Validate requests
+        $request->validate([
+            'username'=>'required',
+            'password'=>'required'
+        ]);
+
+        $userInfo = Staff::where('username','=',$request->username)->first();
+        $password = Staff::where('password','=',$request->password)->first();
+        if(!$userInfo){
+            return back()->with('fail','We do not recognize your username');
+        }else{
+            //check password
+            if($password){
+                $request->session()->put('LoggedUser', $userInfo->id);
+                return redirect('staff/kitchen');
+
+            }else{
+                return back()->with('fail','Incorrect password');
+            }
+        }
+    }
+
+    function checkAdmin(Request $request){
+        //Validate requests
+        $request->validate([
+            'username'=>'required',
+            'password'=>'required'
+        ]);
+
+        $userInfo = Staff::where('username','=',$request->username)->first();
+        $password = Staff::where('password','=',$request->password)->first();
+        if(!$userInfo){
+            return back()->with('fail','We do not recognize your username');
+        }else{
+            //check password
+            if($password){
+                $request->session()->put('LoggedUser', $userInfo->id);
+                return redirect('admin/index');
+
+            }else{
+                return back()->with('fail','Incorrect password');
+            }
+        }
+    }
     /**
      * Display a listing of the resource.
      *

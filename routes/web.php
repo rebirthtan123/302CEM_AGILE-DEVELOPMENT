@@ -28,8 +28,16 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+
 Route::get('/auth/login',[StaffController::class,'login'])->name('auth.login');
-Route::post('auth/check', [StaffController::class,'check'])->name('auth.check');
+Route::get('/auth/loginChef',[StaffController::class,'loginChef'])->name('auth.loginChef');
+Route::get('/auth/loginAdmin',[StaffController::class,'loginAdmin'])->name('auth.loginAdmin');
+
+
+Route::post('/auth/check', [StaffController::class,'check'])->name('auth.check');
+Route::post('/auth/checkChef', [StaffController::class,'checkChef'])->name('auth.checkChef');
+Route::post('/auth/checkAdmin', [StaffController::class,'checkAdmin'])->name('auth.checkAdmin');
 
 //staff section
 Route::get('staff/mainmenu',[StaffController::class,'mainmenu'])->name('staff.mainmenu');

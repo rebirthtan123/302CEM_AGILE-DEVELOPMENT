@@ -32,10 +32,19 @@
     border: 1px solid #ddd;
   }
   
+  a{
+    color:rgb(66, 133, 192);
+  }
+  a:hover {
+    color: white;
+  }
+  
 
   </style>
 
 <br><br>
+<button type="button" class="btn btn-outline-info" style="margin-left:30px;margin-bottom:30px;"><a href="{{ route('auth.login') }}" >Logout </a></button>
+
 <div class="row">
   <div class="column">
 <div class="col-lg-13">

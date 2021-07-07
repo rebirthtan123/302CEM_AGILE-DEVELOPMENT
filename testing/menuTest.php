@@ -3,19 +3,22 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class LoadMainMenuTest extends TestCase
+class menuTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic feature test example.
      *
      * @return void
      */
-    public function test_mainmenu()
+    public function test_menuIndex()
     {
         $response = $this->get('staff/mainmenu');
 
         $response->assertStatus(200);
     }
+
+    
 }

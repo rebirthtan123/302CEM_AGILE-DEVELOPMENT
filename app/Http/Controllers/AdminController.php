@@ -18,7 +18,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-       return view('admin.index');
+        $orders = Order::all();
+       return view('admin.index',compact('orders'));
     }
 
 
