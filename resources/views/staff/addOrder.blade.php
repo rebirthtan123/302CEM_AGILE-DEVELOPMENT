@@ -46,16 +46,13 @@
           <div class="card-body">
             <table class="table table-bordered text-center" width="100%" cellspacing="0">
             <tr>
-              <th>No</th>
               <th>Category Name</th>
               <th>Item Name</th>
               <th>Price</th>
              
            </tr>
            @foreach ($menus as $menu)
-
            <tr>
-            <td> {{ $menu->id }}</td>
              <td>{{ $menu->categoryName }}</td>
                <td>{{ $menu->itemName }}</td>
                <td>{{ $menu->price }}</td>
