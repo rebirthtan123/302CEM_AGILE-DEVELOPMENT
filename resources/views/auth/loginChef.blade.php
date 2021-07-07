@@ -309,14 +309,14 @@
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
-      <h2 class="active"> Sign In - Staff </h2>
+      <h2 class="active"> Sign In - Chef</h2>
       <!-- Icon -->
       <div class="fadeIn first">
         Welcome
       </div>
   
       <!-- Login Form -->
-      <form action="{{ route('auth.check') }}" method="POST">
+      <form action="{{ route('auth.checkChef') }}" method="POST">
         @if(Session::get('fail'))
         <div class="alert alert-danger">
         {{ Session::get('fail') }}
@@ -344,7 +344,7 @@
 
         <a href="{{ asset('auth/loginAdmin') }}">Login as Admin </a>
         &nbsp &nbsp
-        <a href="{{ asset('auth/loginChef') }}">Login as Chef </a>
+        <a href="{{ asset('auth/login') }}">Login as Staff </a>
 
 
       </div>
