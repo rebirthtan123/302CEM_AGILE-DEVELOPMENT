@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/auth/login',[StaffController::class,'login'])->name('auth.login');
-Route::post('auth/check', [StaffController::class,'check'])->name('auth.check');
+Route::post('/auth/check', [StaffController::class,'check'])->name('auth.check');
 
 //staff section
 Route::get('staff/mainmenu',[StaffController::class,'mainmenu'])->name('staff.mainmenu');

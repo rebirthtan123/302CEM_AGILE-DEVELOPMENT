@@ -13,18 +13,30 @@ use Illuminate\Support\Facades\Artisan;
 
 class StaffLoginTest extends TestCase
 {
-    use WithoutMiddleware;
+    
 
     /** @test_login_by_staff */
     public function test_login_by_staff()
     {        
-        $response = $this->json('POST', 
-            'auth/check', 
+        $response = $this->followingRedirects()->post(route('auth.check'), 
             ['username' => 'staff',
             'password' => 'staff',
-            '_token' => csrf_token()]
+            ]
         );
-        $response->assertStatus(500);
+        $response->assertStatus(200);
+    }
+
+    public function test_login_validate()
+    {        
+        $response = $this->post(route('auth.check'), 
+            ['username' => '',
+            'password' => '',
+            ]
+        );
+        $response->assertSessionHasErrors([
+            'username' => 'The username field is required.',
+            'password' => 'The password field is required.',
+        ]);
     }
 }
 
